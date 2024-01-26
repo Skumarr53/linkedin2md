@@ -13,7 +13,10 @@ PROJECT_ROOT_DIR = os.path.dirname(os.path.realpath(__file__))
 install_requirements = parse_requirements(
     os.path.join(PROJECT_ROOT_DIR, 'requirements.txt'), session=False
 )
-install_requires = [str(ir.req) for ir in install_requirements]
+try:
+    requirements = [str(ir.req) for ir in install_requirements]
+except:
+    requirements = [str(ir.requirement) for ir in install_requirements]
 
 setup(
     packages=find_packages(exclude=["linkedin2md.bin"]),
